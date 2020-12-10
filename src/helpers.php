@@ -26,8 +26,8 @@ if (!function_exists('_debug')) {
 		if ($type == 'txt') $prefix = "# ";
 		if ($type == 'html') { $prefix = "<!-- "; $suffix = " -->"; };
 		if ($message) { echo "{$prefix}{$message}{$suffix}"; return; }
-	 	$trace = debug_backtrace(NULL,1);
-	 	$file = preg_replace('/.*\/abetter\/(.*)\.(.*)$/',"$1",$trace[0]['file']);
-	 	echo "{$prefix}include:{$file}{$suffix}";
+		global $view_data; $view = Arr::last($view_data??[]);
+		$file = ($view['path']??'').'/'.($view['file']??'');
+	 	echo "{$prefix}view:{$file}{$suffix}";
 	}
 }
