@@ -26,7 +26,7 @@ if (!function_exists('_debug')) {
 		if ($type == 'txt') $prefix = "# ";
 		if ($type == 'html') { $prefix = "<!-- "; $suffix = " -->"; };
 		if ($message) { echo "{$prefix}{$message}{$suffix}"; return; }
-		global $view_data; $view = Arr::last($view_data??[]);
+		global $view_data; $view = \Arr::last($view_data??[]);
 		$file = ($view['path']??'').'/'.($view['file']??'');
 		$file = preg_replace('/(.*)resources\/views\/(.*)/',"$2",$file);
 	 	echo "{$prefix}view:{$file}{$suffix}";
